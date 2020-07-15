@@ -99,11 +99,19 @@ OR people.stage_name LIKE "";
 
 
 -----------------------------------------------------------------------------
--- #51 
--- Description: 
+-- #51 - Christopher Pellegrino
+-- Description: List of all movies where Person X is the Director and Person Y
+-- is the "Lead Actor" (stage_names are input).
 -----------------------------------------------------------------------------
 
-
+SELECT *
+FROM (movies
+NATURAL JOIN movie_people)
+NATURAL JOIN people
+WHERE (movie_people.role = 'Director'
+AND people.stage_name = 'X')
+OR (movie_people.role = 'Lead Actor'
+AND people.stage_name = 'Y');
 
 
 
